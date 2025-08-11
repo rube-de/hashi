@@ -1,4 +1,4 @@
-import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
+import type { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers"
 import { task, types } from "hardhat/config"
 import type { TaskArguments } from "hardhat/types"
 
@@ -21,8 +21,8 @@ task("deploy:Hashi")
     const signers: SignerWithAddress[] = await hre.ethers.getSigners()
     const hashiFactory: Hashi__factory = <Hashi__factory>await hre.ethers.getContractFactory("Hashi")
     const hashi: Hashi = <Hashi>await hashiFactory.connect(signers[0]).deploy()
-    await hashi.deployed()
-    console.log("Hashi deployed to:", hashi.address)
+    await hashi.waitForDeployment()
+    console.log("Hashi deployed to:", await hashi.getAddress())
     if (taskArguments.verify) await verify(hre, hashi)
   })
 
@@ -40,8 +40,8 @@ task("deploy:ShoyuBashi")
     const shoyuBashi: ShoyuBashi = <ShoyuBashi>(
       await shoyuBashiFactory.connect(signers[0]).deploy(...constructorArguments)
     )
-    await shoyuBashi.deployed()
-    console.log("ShoyuBashi deployed to:", shoyuBashi.address)
+    await shoyuBashi.waitForDeployment()
+    console.log("ShoyuBashi deployed to:", await shoyuBashi.getAddress())
     if (taskArguments.verify) await verify(hre, shoyuBashi, constructorArguments)
   })
 
@@ -54,8 +54,8 @@ task("deploy:HeaderStorage")
       await hre.ethers.getContractFactory("HeaderStorage")
     )
     const headerStorage: HeaderStorage = <HeaderStorage>await headerStorageFactory.connect(signers[0]).deploy()
-    await headerStorage.deployed()
-    console.log("HeaderStorage deployed to:", headerStorage.address)
+    await headerStorage.waitForDeployment()
+    console.log("HeaderStorage deployed to:", await headerStorage.getAddress())
     if (taskArguments.verify) await verify(hre, headerStorage)
   })
 
@@ -66,8 +66,8 @@ task("deploy:Yaho")
     const signers: SignerWithAddress[] = await hre.ethers.getSigners()
     const yahoFactory: Yaho__factory = <Yaho__factory>await hre.ethers.getContractFactory("Yaho")
     const yaho: Yaho = <Yaho>await yahoFactory.connect(signers[0]).deploy()
-    await yaho.deployed()
-    console.log("Yaho deployed to:", yaho.address)
+    await yaho.waitForDeployment()
+    console.log("Yaho deployed to:", await yaho.getAddress())
     if (taskArguments.verify) await verify(hre, yaho)
   })
 
@@ -82,7 +82,7 @@ task("deploy:Yaru")
     const yaruFactory: Yaru__factory = <Yaru__factory>await hre.ethers.getContractFactory("Yaru")
     const constructorArguments = [taskArguments.hashi, taskArguments.yaho, taskArguments.sourceChainId] as const
     const yaru: Yaru = <Yaru>await yaruFactory.connect(signers[0]).deploy(...constructorArguments)
-    await yaru.deployed()
-    console.log("Yaru deployed to:", yaru.address)
+    await yaru.waitForDeployment()
+    console.log("Yaru deployed to:", await yaru.getAddress())
     if (taskArguments.verify) await verify(hre, yaru, constructorArguments)
   })

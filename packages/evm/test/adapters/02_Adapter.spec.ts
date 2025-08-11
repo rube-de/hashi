@@ -1,6 +1,6 @@
 import { expect } from "chai"
-import { RLP, hexlify } from "ethers/lib/utils"
 import { ethers, network } from "hardhat"
+import { encodeRlp, toBeHex } from "ethers"
 
 const CHAIN_ID = 1
 const EMPTY_HASH = "0x0000000000000000000000000000000000000000000000000000000000000000"
@@ -9,7 +9,7 @@ const EMPTY_HASH = "0x0000000000000000000000000000000000000000000000000000000000
 const mine = async (n: number) => await Promise.all([...Array(n)].map(() => network.provider.send("evm_mine")))
 
 const emptyHexlify = (value: string) => {
-  const hex = ethers.utils.hexlify(value, { hexPad: "left" })
+  const hex = toBeHex(value, 32)
   return hex === "0x00" ? "0x" : hex
 }
 
@@ -33,11 +33,11 @@ const blockRLP = (block) => {
     block.baseFeePerGas,
     block.withdrawalsRoot,
   ]
-  return RLP.encode(values.map(emptyHexlify))
+  return encodeRlp(values.map(emptyHexlify))
 }
 
 const getBlock = async (blockNumber: number) => {
-  const block = await ethers.provider.send("eth_getBlockByNumber", [hexlify(blockNumber), false])
+  const block = await ethers.provider.send("eth_getBlockByNumber", [toBeHex(blockNumber), false])
   return {
     ...block,
     blockNumber,

@@ -38,6 +38,7 @@ const chainIds = {
   "polygon-mumbai": 80001,
   sepolia: 11155111,
   "lukso-testnet": 4201,
+  "sapphire-testnet": 23295,
 }
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -61,6 +62,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
         break
       case "lukso-testnet":
         jsonRpcUrl = "https://rpc.testnet.lukso.network"
+        break
+      case "sapphire-testnet":
+        jsonRpcUrl = "https://testnet.sapphire.oasis.dev"
         break
       default:
         jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
@@ -101,6 +105,11 @@ const config: HardhatUserConfig = {
       },
     ],
   },
+  sourcify: {
+    // Disabled by default
+    // Doesn't need an API key
+    enabled: true,
+  },
   gasReporter: {
     currency: "USD",
     enabled: process.env.REPORT_GAS ? true : false,
@@ -121,6 +130,7 @@ const config: HardhatUserConfig = {
     "polygon-mumbai": getChainConfig("polygon-mumbai"),
     sepolia: getChainConfig("sepolia"),
     goerli: getChainConfig("goerli"),
+    "sapphire-testnet": getChainConfig("sapphire-testnet"),
   },
   paths: {
     artifacts: "./artifacts",
@@ -140,7 +150,7 @@ const config: HardhatUserConfig = {
   },
   typechain: {
     outDir: "types",
-    target: "ethers-v5",
+    target: "ethers-v6",
   },
 }
 

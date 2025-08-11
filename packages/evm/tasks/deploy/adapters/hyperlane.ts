@@ -1,5 +1,5 @@
-import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
-import { ethers } from "ethers"
+import type { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers"
+import { ZeroAddress } from "ethers"
 import { task } from "hardhat/config"
 import type { TaskArguments } from "hardhat/types"
 
@@ -15,7 +15,7 @@ task("deploy:adapter:HyperlaneAdapter")
   .addParam("chainId", "chain id of the reporter contract")
   .addParam("reporter", "address of the reporter contract")
   .addParam("mailbox", "address of the Hyperlane mailbox contract")
-  .addOptionalParam("ism", "address of the Hyperlane ISM contract", ethers.constants.AddressZero)
+  .addOptionalParam("ism", "address of the Hyperlane ISM contract", ZeroAddress)
   .addFlag("verify", "whether to verify the contract on Etherscan")
   .setAction(async function (taskArguments: TaskArguments, hre) {
     console.log("Deploying HyperlaneAdapter...")
