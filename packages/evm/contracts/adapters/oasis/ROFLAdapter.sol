@@ -7,19 +7,16 @@ import { BlockHashAdapter } from "../BlockHashAdapter.sol";
 /**
  * @title ROFLAdapter
  * @notice Adapter for Oasis Sapphire ROFL (Runtime OFf-chain Logic) applications
- * @dev This adapter allows ROFL applications to provide block hash attestations
- *      through Oasis Sapphire's confidential compute environment
  */
 contract ROFLAdapter is BlockHashAdapter {
-    /// @notice The ROFL application ID that is authorized to call this adapter
-    bytes21 public immutable roflAppID;
+    string public constant PROVIDER = "oasis";
 
-    /**
-     * @notice Constructs a new ROFLAdapter
-     * @param _roflAppID The bytes21 identifier of the authorized ROFL application
-     */
-    constructor(bytes21 _roflAppID) {
+    bytes21 public immutable roflAppID;
+    uint256 public immutable SOURCE_CHAIN_ID;
+
+    constructor(bytes21 _roflAppID, uint256 _sourceChainId) {
         roflAppID = _roflAppID;
+        SOURCE_CHAIN_ID = _sourceChainId;
     }
 
     /**
@@ -33,7 +30,6 @@ contract ROFLAdapter is BlockHashAdapter {
         // Verify that the caller is authorized through the ROFL application
         Subcall.roflEnsureAuthorizedOrigin(roflAppID);
 
-        // Store the block hash using the base adapter functionality
         _storeHash(chainId, blockNumber, blockHash);
     }
 }
