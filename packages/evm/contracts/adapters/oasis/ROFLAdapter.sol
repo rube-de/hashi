@@ -12,7 +12,10 @@ contract ROFLAdapter is BlockHashAdapter {
     string public constant PROVIDER = "oasis";
 
     bytes21 public immutable roflAppID;
+    address public ROFL_ORACLE;
     uint256 public immutable SOURCE_CHAIN_ID;
+
+    error UnauthorizedROFLOracle();
 
     constructor(bytes21 _roflAppID, uint256 _sourceChainId) {
         roflAppID = _roflAppID;
@@ -27,9 +30,16 @@ contract ROFLAdapter is BlockHashAdapter {
      * @param blockHash The block hash to store
      */
     function storeBlockHeader(uint256 chainId, uint256 blockNumber, bytes32 blockHash) external {
-        // Verify that the caller is authorized through the ROFL application
-        Subcall.roflEnsureAuthorizedOrigin(roflAppID);
+        // Verify that the caller is authorized oracle address
+        if (msg.sender != ROFL_ORACLE) {
+            revert UnauthorizedROFLOracle();
+        }
 
         _storeHash(chainId, blockNumber, blockHash);
+    }
+
+    function setOracle(address oracle) external {
+        Subcall.roflEnsureAuthorizedOrigin(roflAppID);
+        ROFL_ORACLE = oracle;
     }
 }

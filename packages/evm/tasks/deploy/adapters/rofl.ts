@@ -11,7 +11,6 @@ import type { ROFLAdapter__factory } from "../../../types/factories/contracts/ad
 task("deploy:adapter:ROFL")
   .addParam("roflAppId", "ROFL app ID in bech32 format (e.g., rofl1...)", undefined, types.string)
   .addParam("sourceChainId", "chain ID of the source chain", undefined, types.int)
-  .addFlag("verify", "whether to verify the contract on Etherscan")
   .setAction(async function (taskArguments: TaskArguments, hre) {
     console.log("Deploying ROFLAdapter...")
     console.log("ROFL App ID:", taskArguments.roflAppId)
@@ -48,6 +47,4 @@ task("deploy:adapter:ROFL")
     console.log("  - Source Chain ID:", taskArguments.sourceChainId)
     console.log("")
     console.log("Note: This adapter must be deployed on Oasis Sapphire to use ROFL functionality")
-
-    if (taskArguments.verify) await verify(hre, roflAdapter, constructorArguments)
   })
