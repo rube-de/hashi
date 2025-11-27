@@ -1680,10 +1680,10 @@
     "@nomicfoundation/solidity-analyzer-linux-x64-musl" "0.1.2"
     "@nomicfoundation/solidity-analyzer-win32-x64-msvc" "0.1.2"
 
-"@oasisprotocol/sapphire-contracts@^0.2.8":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@oasisprotocol/sapphire-contracts/-/sapphire-contracts-0.2.14.tgz#3145483a3cfbc79066a3ffae07c34b0dba15faba"
-  integrity sha512-FYdJnHsnIBBME1Ggxc3pC1+NBa9HCaI/x4pDxSF2yBYbWvcFsd9M5+TJqP1BlZq6Z4D08v1+ahIcTzKF4YaGiw==
+"@oasisprotocol/sapphire-contracts@^0.2.15":
+  version "0.2.15"
+  resolved "https://registry.yarnpkg.com/@oasisprotocol/sapphire-contracts/-/sapphire-contracts-0.2.15.tgz#db219595c52bcb4478f09c64bd988d78a843bc0e"
+  integrity sha512-4R0G46TYljkdwXLxWqXEiPfRKab9QK1gXrzgx9wjJFxlWh1uyMNkSGdKmuBmD3cWMgUW0wRLI0wJfQYgZTv/Yg==
   dependencies:
     "@openzeppelin/contracts" "^5.0.2"
 
@@ -1711,6 +1711,11 @@
   version "4.9.6"
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.9.6.tgz#2a880a24eb19b4f8b25adc2a5095f2aa27f39677"
   integrity sha512-xSmezSupL+y9VkHZJGDoCBpmnB2ogM13ccaYDWqJTfS3dbuHkgjuwDFUmaFauBCboQMGB/S5UqUl2y54X99BmA==
+
+"@openzeppelin/contracts@^5.0.2":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-5.4.0.tgz#177594bdb2d86c71f5d1052fe40cb4edb95fb20f"
+  integrity sha512-eCYgWnLg6WO+X52I16TZt8uEjbtdkgLC0SUX/xnAksjjrQI4Xfn4iBRoI5j55dmlOhDv1Y7BoR3cU7e3WWhC6A==
 
 "@openzeppelin/contracts@^5.0.2":
   version "5.4.0"

@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "chainId": "23295",
+  "createdAt": 1762439919,
+  "meta": {
+    "name": "ShoyuBashi: enableAdapters",
+    "description": "Call ShoyuBashi.enableAdapters(domain, adapters, threshold)",
+    "txBuilderVersion": "1.16.x",
+    "createdFromSafeAddress": "0x5D238FB29a044366EAAb32c65C300E9e65Acd18F",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x42E59595e63898b22256318a3B49DDDc29A258eF",
+      "value": "0",
+      "data": "0xc3cc4d030000000000000000000000000000000000000000000000000000000000aa36a70000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000002c34a7635475aab04cc002598cecfb5f5615960d",
+      "operation": 0,
+      "contractMethod": {
+        "name": "enableAdapters",
+        "payable": false,
+        "inputs": [
+          {
+            "name": "domain",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "adapters",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "threshold",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "domain": "11155111",
+        "adapters": ["0x2c34a7635475AAB04cC002598CECFb5F5615960d"],
+        "threshold": "1"
+      }
+    }
+  ]
+}

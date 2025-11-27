@@ -39,6 +39,7 @@ const chainIds = {
   sepolia: 11155111,
   "lukso-testnet": 4201,
   "sapphire-testnet": 23295,
+  "sapphire-mainnet": 23294,
 }
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -65,6 +66,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
         break
       case "sapphire-testnet":
         jsonRpcUrl = "https://testnet.sapphire.oasis.dev"
+        break
+      case "sapphire-mainnet":
+        jsonRpcUrl = "https://sapphire.oasis.io"
         break
       default:
         jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
@@ -131,6 +135,7 @@ const config: HardhatUserConfig = {
     sepolia: getChainConfig("sepolia"),
     goerli: getChainConfig("goerli"),
     "sapphire-testnet": getChainConfig("sapphire-testnet"),
+    "sapphire-mainnet": getChainConfig("sapphire-mainnet"),
   },
   paths: {
     artifacts: "./artifacts",
